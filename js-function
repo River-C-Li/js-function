@@ -1,0 +1,162 @@
+
+// ALAB 308.5.1 - Creating Reusable Functions, due Oct 7,
+// Part-1
+// 1. return the sum////////////////finished
+let sum
+function sumArr(arr){    
+    for ( i=0, i < arr.length, i++ ) {
+        sum += arr[i]
+    } return sum
+} 
+let arr=[1, 2, 3, 4]
+let finalsum=sumArr(arr)
+console.log(finalsum)
+
+// solution-2
+const arr = [1, 2, 3, 4]
+const sum = arr.reduce(
+     function(accum, init) {
+        return accum + init
+    }, 
+0)
+console.log(sum)  //10
+
+
+
+// 2. return the average ////////////////////////////////////////finished
+function averArr(arr){ 
+    let sum=0
+    for (i=0; i < arr.length; i++){
+        sum += arr[i]      
+    }  return sum / arr.length
+} 
+let num=[1, 2, 3, 4]
+let finalaver=averArr(num)
+console.log(finalaver)
+
+
+// 3.return the longest string  /////////////////////////////////////////finished
+const arr = ["function", "longest", "string", "arr"];
+const lonArr = arr.reduce(                              
+    function(lon, init) {                                //(lon, init) => {}
+  return init.length > lon.length ? init : lon;
+}, 
+"");
+console.log(lonArr); 
+
+// 4.Take an array of strings, and a number and return an array of the strings that are longer than the given number. ///finished
+let str=['say', 'hello', 'in', 'the', 'morning']
+let i=3
+let longWords = str.filter(
+    function(newstr) { 
+        return newstr.length > i; });
+console.log(longWords)
+
+
+// 5.Take a number, n, and print every number between 1 and n without using loops. Use recursion.////////////
+function printNumbers(n) {
+    if (n <= 0) {
+      return; 
+    }
+    printNumbers(n - 1); 
+    console.log(n); 
+  printNumbers(9)
+}
+console.log(printNumbers)
+
+
+// part-2
+// 1.Sort the array by age.//////////////////////////////////////////////////////////////////////////finished
+let arr=[{ id: "42", name: "Bruce", occupation: "Knight", age: "41" }, 
+    { id: "48", name: "Barry", occupation: "Runner", age: "25" }, 
+    { id: "57", name: "Bob", occupation: "Fry Cook", age: "19" }, 
+    { id: "63", name: "Blaine", occupation: "Quiz Master", age: "58" }, 
+    { id: "7", name: "Bilbo", occupation: "None", age: "111" }]
+  const groupedByAge = arr.reduce(
+      function (accumulator, person) {
+        if (!accumulator[person.age]) {
+      accumulator[person.age] = [];
+    }
+    accumulator[person.age].push(person);
+    return accumulator;
+  }, {});
+  console.log(groupedByAge);   
+ 
+
+//  2. Filter the array to remove entries with an age greater than 50.//////////////////////finished
+let groupedByAge=[{ id: "42", name: "Bruce", occupation: "Knight", age: "41" }, 
+      { id: "48", name: "Barry", occupation: "Runner", age: "25" }, 
+      { id: "57", name: "Bob", occupation: "Fry Cook", age: "19" }, 
+      { id: "63", name: "Blaine", occupation: "Quiz Master", age: "58" }, 
+      { id: "7", name: "Bilbo", occupation: "None", age: "111" }]
+const youngpeop = groupedByAge.filter(peop => peop.age < 50);
+console.log(youngpeop);
+
+
+//3. Map the array to change the “occupation” key 
+// to “job” and increment every age by 1.///////////////////////////////////////////////////////////finished
+let groupedByAge={
+    '19': [ { id: '57', name: 'Bob', occupation: 'Fry Cook', age: '19' } ],
+    '25': [ { id: '48', name: 'Barry', occupation: 'Runner', age: '25' } ],
+    '41': [ { id: '42', name: 'Bruce', occupation: 'Knight', age: '41' } ],
+    '58': [ { id: '63', name: 'Blaine', occupation: 'Quiz Master', age: '58' } ],
+    '111': [ { id: '7', name: 'Bilbo', occupation: 'None', age: '111' } ]
+}
+const age1 = groupedByAge['19'][0].age
+const age2= groupedByAge['25'][0].age
+const age3= groupedByAge['41'][0].age
+const age4= groupedByAge['58'][0].age
+const age5= groupedByAge['111'][0].age
+let agearr=[age1, age2, age3, age4, age5]
+
+agearr.map(function(newage){
+    console.log(Number(newage)+1)                // 20,26,42,59,112
+ }
+ )
+
+const keysToSelect1 = ["occupation"];
+const selectedKey1 = Object.keys(groupedByAge['19'][0]).filter(key => keysToSelect1.includes(key));
+
+const keysToSelect2 = ["occupation"];
+const selectedKey2 = Object.keys(groupedByAge['19'][0]).filter(key => keysToSelect2.includes(key));
+
+const keysToSelect3 = ["occupation"];
+const selectedKey3 = Object.keys(groupedByAge['19'][0]).filter(key => keysToSelect3.includes(key));
+
+const keysToSelect4 = ["occupation"];
+const selectedKey4 = Object.keys(groupedByAge['19'][0]).filter(key => keysToSelect4.includes(key));
+
+const keysToSelect5 = ["occupation"];
+const selectedKey5 = Object.keys(groupedByAge['19'][0]).filter(key => keysToSelect5.includes(key));
+
+let occarr=[selectedKey1 + selectedKey2 + selectedKey3 + selectedKey4 + selectedKey5]
+occarr.map(function(newocc){
+            newocc="job"
+    console.log(newocc)                      //job
+ }
+ )
+
+
+
+// 4.Use the reduce method to calculate the sum of the ages.///////////////////////////////////////////finished
+const allage = [19, 25, 41, 58, 111]
+const sum = allage.reduce(
+     function(accum, init) {
+        return accum + init
+    }, 
+0)
+console.log(sum)               //254
+
+
+
+//5. Then use the result to calculate the average age.///////////////////////////////////////////////finished
+ function averAge(allage){   
+    let sum=0
+    for ( i=0; i < allage.length; i++) {
+        sum += allage[i]      
+    } 
+    return sum / allage.length
+} 
+let allage = [19, 25, 41, 58, 111]
+let finalaver=averAge(allage)
+console.log(finalaver)               //50.8
